@@ -120,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       fontSize: 24),
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: ()=> context.push(const AppRoot(),),
                               child: isLoading
                                   ? const Center(
                                       child: CircularProgressIndicator(),
