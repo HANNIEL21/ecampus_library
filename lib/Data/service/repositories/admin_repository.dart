@@ -1,9 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecampus_library/data/exceptions/app_exceptions.dart';
-import 'package:ecampus_library/data/models/user_model.dart';
-import 'package:ecampus_library/data/service/dao/admin_dao.dart';
-import 'package:ecampus_library/data/enums.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ecampus_library/export.dart';
 
 class AdminRepository with AdminDao {
   FirebaseAuth auth = FirebaseAuth.instance;

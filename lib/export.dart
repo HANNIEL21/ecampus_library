@@ -1,11 +1,18 @@
-// Packages
+export 'dart:convert';
+export 'package:flutter/services.dart';
+export 'package:flutter/foundation.dart';
 export 'package:flutter/material.dart';
+export 'package:flutter/rendering.dart';
+
+// Packages
 export 'package:animations/animations.dart';
 export 'package:carousel_slider/carousel_slider.dart';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:http/http.dart';
-
-export 'dart:convert';
+export 'package:firebase_auth/firebase_auth.dart';
+export 'package:cloud_firestore/cloud_firestore.dart';
+export 'package:firebase_storage/firebase_storage.dart';
+export 'package:freezed_annotation/freezed_annotation.dart';
 
 // Screens
 export 'package:ecampus_library/screens/auth/auth.dart';
@@ -86,8 +93,6 @@ export 'package:ecampus_library/Data/models/group_model.dart';
 export 'package:ecampus_library/Data/models/file_model.dart';
 export 'package:ecampus_library/Data/models/channel_model.dart';
 export 'package:ecampus_library/Data/models/login_model.dart';
-export 'package:ecampus_library/Data/models/login_model.g.dart';
-export 'package:ecampus_library/Data/models/login_model.freezed.dart';
 
 // Preferences
 export 'package:ecampus_library/Data/preference/shared_preference.dart';

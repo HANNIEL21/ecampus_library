@@ -1,8 +1,4 @@
 import 'dart:developer';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecampus_library/data/models/user.dart';
-import 'package:ecampus_library/data/models/user_model.dart';
-import 'package:ecampus_library/data/service/dao/auth_dao.dart';
 import 'package:ecampus_library/export.dart';
 
 class AuthRepository with AuthDao {

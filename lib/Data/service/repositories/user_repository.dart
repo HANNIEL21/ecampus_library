@@ -1,11 +1,6 @@
 import 'dart:io';
 import 'package:path/path.dart' as Path;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecampus_library/data/service/dao/user_dao.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import '../../models/subscription_model.dart';
-import '../../models/user.dart';
+import 'package:ecampus_library/export.dart';
 
 class UserRepository with UserDao {
   FirebaseAuth auth = FirebaseAuth.instance;
