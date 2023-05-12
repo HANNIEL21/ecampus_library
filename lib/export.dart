@@ -12,7 +12,10 @@ export 'package:http/http.dart';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:firebase_storage/firebase_storage.dart';
+export 'package:ecampus_library/firebase_options.dart';
+export 'package:firebase_core/firebase_core.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';
+export 'package:provider/provider.dart';
 
 // Screens
 export 'package:ecampus_library/screens/auth/auth.dart';
@@ -60,7 +63,7 @@ export 'package:ecampus_library/widgets/BookTile.dart';
 export 'package:ecampus_library/widgets/ClassTiles.dart';
 export 'package:ecampus_library/widgets/CustomStatsTile.dart';
 
-// Provider
+/* Provider
 export 'package:ecampus_library/Data/provider/app_provider.dart';
 export 'package:ecampus_library/Data/provider/auth_provider.dart';
 export 'package:ecampus_library/Data/provider/user_provider.dart';
@@ -102,3 +105,6 @@ export 'package:ecampus_library/Data/exceptions/app_exceptions.dart';
 
 // Enums
 export 'package:ecampus_library/Data/enums.dart';
+
+
+ */

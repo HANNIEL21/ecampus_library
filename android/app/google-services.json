@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "451474702292",
+    "project_id": "ecampus-library-5ba29",
+    "storage_bucket": "ecampus-library-5ba29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451474702292:android:e5e056b88d68d1f2ac6041",
+        "android_client_info": {
+          "package_name": "com.ecapus_library.ecampus_library"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451474702292-k61vip3oiik2l5c85ticrrqvef837rmb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ecapus_library.ecampus_library",
+            "certificate_hash": "ee8fafa6027899d976374bc529c14ad669cd7cb1"
+          }
+        },
+        {
+          "client_id": "451474702292-7a3gkufftjb6m1o7phh3mfl2sgn4fu5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAekUqjtsURffQGOVFDOJE9dr_vss3Sz_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451474702292-7a3gkufftjb6m1o7phh3mfl2sgn4fu5h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "451474702292-59qa73qaqtj6k7o11d6a2cjk38254upd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ecapuslibrary.ecampusLibrary"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451474702292:android:76f8c8b595aaabedac6041",
+        "android_client_info": {
+          "package_name": "com.example.ecampus_library"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451474702292-7a3gkufftjb6m1o7phh3mfl2sgn4fu5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAekUqjtsURffQGOVFDOJE9dr_vss3Sz_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451474702292-7a3gkufftjb6m1o7phh3mfl2sgn4fu5h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "451474702292-59qa73qaqtj6k7o11d6a2cjk38254upd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ecapuslibrary.ecampusLibrary"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

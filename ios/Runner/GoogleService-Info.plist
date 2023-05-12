@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>451474702292-631j1odqql9cec8ue8kvdge1pqbtejc4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.451474702292-631j1odqql9cec8ue8kvdge1pqbtejc4</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>451474702292-k61vip3oiik2l5c85ticrrqvef837rmb.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAlvk3gvy_70VLj4-p_EsrfYsaHiNDvVFY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>451474702292</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.ecampusLibrary</string>
+	<key>PROJECT_ID</key>
+	<string>ecampus-library-5ba29</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ecampus-library-5ba29.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:451474702292:ios:238d1efc04a9b9e2ac6041</string>
+</dict>
+</plist>
