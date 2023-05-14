@@ -8,8 +8,19 @@ class ExamScreen extends StatefulWidget {
 }
 
 class _ExamScreenState extends State<ExamScreen> {
+  int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: PageView(
+        children: [
+          ExamScreen1(),
+          FacultyScreen(),
+          SubjectScreen(),
+
+        ],
+      ),
+    );
   }
 }

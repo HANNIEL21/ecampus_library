@@ -11,158 +11,210 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController(text:"teststudent2@gmail.com");
+  TextEditingController passwordController = TextEditingController(text:"testStudent2");
 
+  String? loginError;
   bool isLoading = false;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+  login(AuthProvider provider) async {
+    final email = emailController.text;
+    final password = passwordController.text;
+
+    if(email == "" || password == ""){
+      context.showSnackBar("All fields are required");
+      return;
+    }
+
+    provider.login(
+        email: email,
+        password: password,
+        callback: (result) {
+          final response = result;
+          if (response.error != null) {
+            //TODO handle error
+            setState(() {
+              loginError = response.error;
+              context.showSnackBar(response.error.toString());
+            });
+            return;
+          }
+          setState(() {
+            isLoading = response.isLoading;
+          });
+
+          if (response.data != null) {
+            final data = response.data as FirebaseUserModel;
+            final category =
+                data.category; //navigate to the correct screen from category
+            //todo navigate to the next page
+
+            if (category == UserCategory.ADMIN) {
+              context.push(const AppRoot());
+              return;
+            }
+
+            context.push(const AppRoot());
+          }
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraint) {
-          return Form(
-            child: SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: constraint.maxHeight),
-                child: IntrinsicHeight(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Form
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 18,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Text
-                            Text(
-                              C.S.logIn,
-                              style: const TextStyle(
-                                  fontSize: 50, fontWeight: FontWeight.w600),
-                            ),
-
-                            // Spacing
-                            const SizedBox(
-                              height: 30,
-                            ),
-
-                            // Email field
-                            CustomTextField(
-                              controller: emailController,
-                              icon: Icons.mail,
-                              HintText: C.S.enterEmail,
-                              color: Colors.indigo,
-                              obscure: false,
-                              type: TextInputType.emailAddress,
-                            ),
-
-                            // Spacing
-                            const SizedBox(
-                              height: 25,
-                            ),
-
-                            // Password
-                            CustomTextField(
-                              controller: passwordController,
-                              icon: Icons.lock,
-                              HintText: C.S.enterPassword,
-                              color: Colors.indigo,
-                              obscure: true,
-                              type: TextInputType.visiblePassword,
-                            ),
-
-                            // Spacing
-                            const SizedBox(
-                              height: 20,
-                            ),
-
-                            // Forgot password
-                            InkWell(
-                              onTap: () {
-                                context.push(const RecoverPasswordScreen());
-                              },
-                              child: Text.rich(
-                                TextSpan(
-                                  style: const TextStyle(
-                                      color: Colors.indigo,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                  text: C.S.forgotPassword,
-                                ),
+          return Form(child: Consumer<AuthProvider>(
+            builder: (context, controller, child) {
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraint.maxHeight),
+                  child: IntrinsicHeight(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Form
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 18,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Text
+                              Text(
+                                C.S.logIn,
+                                style: const TextStyle(
+                                    fontSize: 50, fontWeight: FontWeight.w600),
                               ),
-                            ),
 
-                            // Spacing
-                            const SizedBox(
-                              height: 50,
-                            ),
+                              // Spacing
+                              const SizedBox(
+                                height: 30,
+                              ),
 
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                shape: MaterialStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
+                              // Email field
+                              CustomTextField(
+                                controller: emailController,
+                                icon: Icons.mail,
+                                HintText: C.S.enterEmail,
+                                color: Colors.indigo,
+                                obscure: false,
+                                type: TextInputType.emailAddress,
+                              ),
+
+                              // Spacing
+                              const SizedBox(
+                                height: 25,
+                              ),
+
+                              // Password
+                              CustomTextField(
+                                controller: passwordController,
+                                icon: Icons.lock,
+                                HintText: C.S.enterPassword,
+                                color: Colors.indigo,
+                                obscure: true,
+                                type: TextInputType.visiblePassword,
+                              ),
+
+                              // Spacing
+                              const SizedBox(
+                                height: 20,
+                              ),
+
+                              // Forgot password
+                              InkWell(
+                                onTap: () {
+                                  context.push(const RecoverPasswordScreen());
+                                },
+                                child: Text.rich(
+                                  TextSpan(
+                                    style: const TextStyle(
+                                        color: Colors.indigo,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                    text: C.S.forgotPassword,
                                   ),
                                 ),
-                                fixedSize: const MaterialStatePropertyAll(
-                                  Size(400, 50),
-                                ),
-                                backgroundColor: const MaterialStatePropertyAll(
-                                  Colors.indigo,
-                                ),
-                                textStyle: const MaterialStatePropertyAll(
-                                  TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24),
-                                ),
                               ),
-                              onPressed: ()=> context.push(const AppRoot(),),
-                              child: isLoading
-                                  ? const Center(
-                                      child: CircularProgressIndicator(),
-                                    )
-                                  : Text(
-                                      C.S.logIn,
+
+                              // Spacing
+                              const SizedBox(
+                                height: 50,
+                              ),
+
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  shape: MaterialStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
-                            ),
-
-                            // Spacing
-                            const SizedBox(
-                              height: 50,
-                            ),
-
-                            // don't have an account
-                            InkWell(
-                              onTap: widget.onClickToggle,
-                              child: Text.rich(
-                                TextSpan(
-                                  style: const TextStyle(
-                                      color: Colors.black87, fontSize: 15),
-                                  text: "Don't have an account ",
-                                  children: [
-                                    TextSpan(
-                                      text: C.S.singUp,
-                                      style: const TextStyle(
-                                          color: Colors.indigo,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
+                                  ),
+                                  fixedSize: const MaterialStatePropertyAll(
+                                    Size(400, 50),
+                                  ),
+                                  backgroundColor:
+                                      const MaterialStatePropertyAll(
+                                    Colors.indigo,
+                                  ),
+                                  textStyle: const MaterialStatePropertyAll(
+                                    TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 24),
+                                  ),
                                 ),
+                                onPressed: () => login(controller),
+                                child: isLoading
+                                    ? const Center(
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    : Text(
+                                        C.S.logIn,
+                                      ),
                               ),
-                            )
-                          ],
+
+                              // Spacing
+                              const SizedBox(
+                                height: 50,
+                              ),
+
+                              // don't have an account
+                              InkWell(
+                                onTap: widget.onClickToggle,
+                                child: Text.rich(
+                                  TextSpan(
+                                    style: const TextStyle(
+                                        color: Colors.black87, fontSize: 15),
+                                    text: "Don't have an account ",
+                                    children: [
+                                      TextSpan(
+                                        text: C.S.singUp,
+                                        style: const TextStyle(
+                                            color: Colors.indigo,
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ),
-          );
+              );
+            },
+          ));
         },
       ),
     );

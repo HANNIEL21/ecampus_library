@@ -1,8 +1,17 @@
-import 'package:ecampus_library/screens/auth/auth.dart';
-import 'package:flutter/material.dart';
+import 'package:ecampus_library/export.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => AppProvider()),
+    ChangeNotifierProvider(create: (_) => AuthProvider()..init()),
+    ChangeNotifierProvider(create: (_) => UserProvider()..init()),
+    Provider<BuildContext>(create: (c) => c),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +23,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: const AuthScreen(),

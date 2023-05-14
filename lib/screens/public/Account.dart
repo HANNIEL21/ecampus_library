@@ -28,7 +28,7 @@ class _AccountScreenState extends State<AccountScreen> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                  const EditProfileScreen()));
+                                      const EditProfileScreen()));
                         },
                         icon: Icon(
                           Icons.edit,
@@ -51,8 +51,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           decoration: BoxDecoration(
                             border: Border.all(
                               width: 4,
-                              color: Theme.of(context)
-                                  .scaffoldBackgroundColor,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                             ),
                             shape: BoxShape.circle,
                             color: Colors.indigo[900],
@@ -166,10 +165,11 @@ class _AccountScreenState extends State<AccountScreen> {
                   // Divider
                   const Divider(),
 
-                  const ListTile(
+                  ListTile(
                     leading: Icon(Icons.wallet),
                     title: Text("Subscription Settings"),
                     trailing: Icon(Icons.chevron_right),
+                    onTap:() => context.push(const SubscriptionScreen()),
                   ),
 
                   // Divider

@@ -14,4 +14,7 @@ class Strings {
   String get dontHaveAnAccount => "Don't have an account?";
   String get alreadyHaveAnAccount => "Already have an account?";
   String get verificationCode => "A verification code will be sent to this number";
+  String get newFormat => "This follows the new jamb format i.e 180 questions and 2 hours to answer";
+  String get oldFormat => "This follows the old jamb format i.e 220 questions and 3 hours and 15 minutes to answer";
+  String get startExam => "Start Exam";
 }

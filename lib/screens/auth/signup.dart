@@ -14,6 +14,20 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+
+  signup(AuthProvider provider){
+    final email = emailController.text;
+    final password = passwordController.text;
+    final phoneNumber = phoneController.text;
+
+    provider.createAccount(email: email, password: password, callback: (result) {
+      final response = result;
+    });
+
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
