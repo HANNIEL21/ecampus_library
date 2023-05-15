@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecampus_library/utils/extensions/routeExtension.dart';
 import 'package:flutter/material.dart';
 import 'package:ecampus_library/export.dart';
@@ -11,8 +13,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController = TextEditingController(text:"teststudent2@gmail.com");
-  TextEditingController passwordController = TextEditingController(text:"testStudent2");
+  TextEditingController emailController = TextEditingController(text:"testadmin1@gmail.com");
+  TextEditingController passwordController = TextEditingController(text:"testAdmin1");
 
   String? loginError;
   bool isLoading = false;
@@ -21,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    super.dispose();
   }
 
   login(AuthProvider provider) async {
@@ -36,6 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
         email: email,
         password: password,
         callback: (result) {
+          log(result.data.toString());
           final response = result;
           if (response.error != null) {
             //TODO handle error
@@ -45,6 +49,8 @@ class _LoginScreenState extends State<LoginScreen> {
             });
             return;
           }
+
+
           setState(() {
             isLoading = response.isLoading;
           });

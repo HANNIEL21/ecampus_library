@@ -119,12 +119,9 @@ class UserModel with BaseHelper {
         gender: data["gender"],
         school: data["school"],
         createdAt: data["createdAt"],
-        bookmark: null,
-        //data["bookmark"]??[],
-        friendRequest: null,
-        //data["friend requests"]??[],
-        friends: null,
-        // data["friends"]??[],
+        bookmark: data["bookmark"]??[],
+        friendRequest: data["friend requests"]??[],
+        friends:  data["friends"]??[],
         subInfo: data["subscriptionInfo"]);
 
   }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecampus_library/export.dart';
 
 class AuthProvider extends BaseProvider {
@@ -24,12 +26,13 @@ class AuthProvider extends BaseProvider {
     try {
       final user = await repository.login(email: email, password: password);
       _response = ProviderResponse(data: user);
-
+      log(_response.data.toString());
       if (user == null) {
+        log("user not found");
         return;
       }
 
-      await Preference.saveCategory(user.category!);
+      await Preference.saveCategory(user.category);
 
       callback(_response);
     } catch (e) {
@@ -52,9 +55,7 @@ class AuthProvider extends BaseProvider {
       final user = await repository.createAccount(email: email, password: password);
       final _response = ProviderResponse(data: user);
 
-      if(user == null){
-        return;
-      }
+
 
       callback(_response);
     }catch(e){

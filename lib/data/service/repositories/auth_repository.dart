@@ -14,12 +14,9 @@ class AuthRepository with AuthDao {
           .then((value) async {
         //TODO complete registration process and insert user
         final user = value.user;
-        if(user == null){
+        if (user == null) {
           return;
         }
-
-
-
       }).catchError((error) {
         throw Exception(error.toString());
       });
@@ -56,7 +53,10 @@ class AuthRepository with AuthDao {
       if (data == null) {
         throw Exception("user not found");
       }
+      log("repository:$data");
+
       return FirebaseUserModel.fromJson(data);
+
     } catch (e) {
       rethrow;
     }

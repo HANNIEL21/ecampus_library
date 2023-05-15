@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:ecampus_library/export.dart';
 
 void main() async{
@@ -5,6 +6,14 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  try {
+    final result = await BrainFieldApi.getCategory(
+        body: {'menu': 'userdetails', 'userid': 'student'});
+    log("successful ${result.length}");
+  } catch (e) {
+    log(e.toString());
+  }
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => AppProvider()),
