@@ -12,6 +12,7 @@ void main() async{
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => AppProvider()),
+    ChangeNotifierProvider(create: (_) => BrainfriendController()..getCategories()),
     ChangeNotifierProvider(create: (_) => AuthProvider()..init()),
     ChangeNotifierProvider(create: (_) => UserProvider()..init()),
     Provider<BuildContext>(create: (c) => c),

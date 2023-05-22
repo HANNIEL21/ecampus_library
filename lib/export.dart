@@ -1,4 +1,5 @@
 export 'dart:convert';
+export 'dart:io';
 export 'package:flutter/services.dart';
 export 'package:flutter/foundation.dart';
 export 'package:flutter/material.dart';
@@ -17,10 +18,12 @@ export 'package:ecampus_library/firebase_options.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:provider/provider.dart';
+export 'package:image_picker/image_picker.dart';
 
 
 // Screens
 export 'firebase_options.dart';
+export 'package:ecampus_library/dummydata.dart';
 export 'package:ecampus_library/screens/auth/auth.dart';
 export 'package:ecampus_library/screens/auth/login.dart';
 export 'package:ecampus_library/screens/auth/signup.dart';
@@ -74,6 +77,7 @@ export 'package:ecampus_library/widgets/ClassTiles.dart';
 export 'package:ecampus_library/widgets/CustomStatsTile.dart';
 export 'package:ecampus_library/widgets/ExamCard.dart';
 export 'package:ecampus_library/widgets/CardWidget.dart';
+export 'package:ecampus_library/widgets/Dropdown.dart';
 
 // Provider
 export 'package:ecampus_library/data/provider/app_provider.dart';

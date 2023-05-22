@@ -2,7 +2,8 @@ import 'dart:ffi';
 import 'package:ecampus_library/export.dart';
 
 
-class BrainfieldController with ChangeNotifier {
+class BrainfriendController with ChangeNotifier {
+
   ProviderResponse _response = const ProviderResponse();
 
   ProviderResponse get response => _response;
@@ -15,9 +16,10 @@ class BrainfieldController with ChangeNotifier {
     _response = const ProviderResponse(isLoading: true);
     notifyListeners();
     try {
-      final result = await BrainFieldApi.getCategory(
-          body: {'menu': 'userdetails', 'userid': user.uid});
-      _response = ProviderResponse(data: SubjectResponse(contents: result));
+      final result = await BrainFieldApi.getCategory(body: {'menu': 'userdetails', 'userid': user.uid});
+      final contentResponse = ContentResponse(contents: result);
+
+      _response = ProviderResponse(data: contentResponse);
       notifyListeners();
     } catch (e) {
       _response = ProviderResponse(error: e.toString());
@@ -26,9 +28,12 @@ class BrainfieldController with ChangeNotifier {
   }
 
   void getTopics(
-      {required String classs,
-      required String subjectCode,
-      required String category}) async {
+      {
+        required String classs,
+        required String subjectCode,
+        required String category
+
+      }) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       return;
@@ -53,9 +58,9 @@ class BrainfieldController with ChangeNotifier {
 
   void getEmaterial(
       {required String classs,
-      required String subjectCode,
-      required String category,
-      bool isEnote = true}) async {
+        required String subjectCode,
+        required String category,
+        bool isEnote = true}) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       return;
@@ -79,12 +84,12 @@ class BrainfieldController with ChangeNotifier {
 
   void startExam(
       {required String classs,
-      required String subjectCode,
-      required String category,
-      required List<Int> topicIndex,
-      required int hours,
-      required int minutes,
-      required int questcount}) async {
+        required String subjectCode,
+        required String category,
+        required List<Int> topicIndex,
+        required int hours,
+        required int minutes,
+        required int questcount}) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       return;
@@ -111,4 +116,5 @@ class BrainfieldController with ChangeNotifier {
     }
     notifyListeners();
   }
+
 }
