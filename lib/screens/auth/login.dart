@@ -13,8 +13,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController = TextEditingController(text:"testadmin1@gmail.com");
-  TextEditingController passwordController = TextEditingController(text:"testAdmin1");
+  TextEditingController emailController = TextEditingController(text:"testuser1@gmail.com");
+  TextEditingController passwordController = TextEditingController(text:"testUser1");
 
   String? loginError;
   bool isLoading = false;
@@ -39,7 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
         email: email,
         password: password,
         callback: (result) {
-          log(result.data.toString());
           final response = result;
           if (response.error != null) {
             //TODO handle error
@@ -57,15 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
           if (response.data != null) {
             final data = response.data as FirebaseUserModel;
-            final category =
-                data.category; //navigate to the correct screen from category
-            //todo navigate to the next page
-
-            if (category == UserCategory.ADMIN) {
-              context.push(const AppRoot());
-              return;
-            }
-
+            final category = data.category;
             context.push(const AppRoot());
           }
         });

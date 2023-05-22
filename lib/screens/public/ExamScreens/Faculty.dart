@@ -29,7 +29,7 @@ class FacultyScreen extends StatelessWidget {
                   ),
                   children: const [
                     CardWidget(title: "Law"),
-                    CardWidget(title: "English"),
+                    CardWidget(title: "Edcation"),
                     CardWidget(title: "Chemistry"),
                     CardWidget(title: "Physics"),
                     CardWidget(title: "Civic Education"),

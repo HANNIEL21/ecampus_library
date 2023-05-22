@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:ecampus_library/export.dart';
 
 class AuthProvider extends BaseProvider {
@@ -16,17 +15,18 @@ class AuthProvider extends BaseProvider {
     notifyListeners();
   }
 
-  void login(
-      {required String email,
-      required String password,
-      required Function(ProviderResponse) callback}) async {
-    _response = const ProviderResponse(
-        isLoading: true); // notify the UI for loading event
+  void login({
+    required String email,
+    required String password,
+    required Function(ProviderResponse) callback,
+  }) async {
+    _response = const ProviderResponse(isLoading: true);
     notifyListeners();
     try {
       final user = await repository.login(email: email, password: password);
+      log("user: $user");
       _response = ProviderResponse(data: user);
-      log(_response.data.toString());
+      log("response: ${_response}");
       if (user == null) {
         log("user not found");
         return;
@@ -37,6 +37,7 @@ class AuthProvider extends BaseProvider {
       callback(_response);
     } catch (e) {
       _response = ProviderResponse(error: e.toString());
+      log(e.toString());
 
       callback(_response);
     }
@@ -50,15 +51,13 @@ class AuthProvider extends BaseProvider {
       required Function(ProviderResponse) callback}) async {
     _response = const ProviderResponse(isLoading: true);
     notifyListeners();
-
-    try{
-      final user = await repository.createAccount(email: email, password: password);
+    log("signup called");
+    try {
+      final user =
+          await repository.createAccount(email: email, password: password);
       final _response = ProviderResponse(data: user);
-
-
-
       callback(_response);
-    }catch(e){
+    } catch (e) {
       final _response = ProviderResponse(error: e.toString());
       callback(_response);
     }

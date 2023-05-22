@@ -1,7 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecampus_library/data/provider/helper/base_helper.dart';
-
-import '../enums.dart';
+import 'package:ecampus_library/export.dart';
 
 class UserModel with BaseHelper {
   String? uuid;

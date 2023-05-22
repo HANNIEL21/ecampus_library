@@ -1,7 +1,4 @@
-import 'package:ecampus_library/data/models/subscription_model.dart';
-
-import '../enums.dart';
-import '../provider/helper/base_helper.dart';
+import 'package:ecampus_library/export.dart';
 
 class FirebaseUserModel with BaseHelper {
   final String displayName;
@@ -95,27 +92,29 @@ class FirebaseUserModel with BaseHelper {
         createdAt: createdAt ?? this.createdAt,
       );
 
-  static FirebaseUserModel fromJson(Map<String, dynamic> json) =>
-      FirebaseUserModel(
-        displayName: json['displayName'],
-        email: json['email'],
-        subInfo: SubscriptionInfo.fromJson(json['subInfo']),
-        friendRequest: List<String>.from(json['friendRequest']),
-        bookmark: List<String>.from(json['bookmark']),
-        friends: List<String>.from(json['friends']),
-        gender: json['gender'],
-        phone: json['phone'],
-        profileImg: json['profileImg'],
-        school: json['school'],
-        uid: json['uid'],
-        userName: json['userName'],
-        country: json['country'],
-        createdAt: json['createdAt'] ?? DateTime.now().millisecondsSinceEpoch,
-        category: UserCategory
-                .values[json['category'] ?? UserCategory.USER.index //integer
-            ],
-        level: EducationLevel
-                .values[json['level'] ?? EducationLevel.NONE.index //integer
-            ],
-      );
+  static FirebaseUserModel fromJson(Map<String, dynamic>? json) {
+    if (json == null) {
+      // Handle the case where `json` is null, such as returning a default or throwing an error.
+      throw Exception('Invalid JSON data');
+    }
+
+    return FirebaseUserModel(
+      displayName: json['displayName'],
+      email: json['email'],
+      subInfo: SubscriptionInfo.fromJson(json['subInfo']),
+      friendRequest: json['friendRequest'],
+      bookmark: (json['bookmark'] ?? []) as List<String>,
+      friends: (json['friends'] ?? []) as List<String>,
+      gender: json['gender'],
+      phone: json['phone'],
+      profileImg: json['profileImg'],
+      school: json['school'],
+      uid: json['uid'],
+      userName: json['userName'],
+      country: json['country'],
+      createdAt: json['createdAt'] ?? DateTime.now().millisecondsSinceEpoch,
+      category: UserCategory.values[json['category'] ?? UserCategory.USER.index],
+      level: EducationLevel.values[json['level'] ?? EducationLevel.NONE.index],
+    );
+  }
 }

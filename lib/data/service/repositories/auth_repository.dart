@@ -7,6 +7,7 @@ class AuthRepository with AuthDao {
   @override
   Future<UserCredential?> createAccount(
       {required String email, required String password}) async {
+    log("repo signin called");
     try {
       UserCredential? userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
@@ -14,6 +15,7 @@ class AuthRepository with AuthDao {
           .then((value) async {
         //TODO complete registration process and insert user
         final user = value.user;
+        log("$user created");
         if (user == null) {
           return;
         }
@@ -54,7 +56,6 @@ class AuthRepository with AuthDao {
         throw Exception("user not found");
       }
       log("repository:$data");
-
       return FirebaseUserModel.fromJson(data);
 
     } catch (e) {

@@ -17,8 +17,6 @@ class _ExamScreenState extends State<ExamScreen> {
         children: [
           ExamScreen1(),
           FacultyScreen(),
-          SubjectScreen(),
-
         ],
       ),
     );

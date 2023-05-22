@@ -5,45 +5,33 @@ class ExamScreen1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Name
+    return Consumer<BrainfriendController>(
+        builder: (context, controller, child) {
+          return Scaffold(
+            body: controller.response.isLoading
+                ?  Center(
+              child: const CircularProgressIndicator(),
+            )
+                : Scaffold(
+              body: displayContent(controller),
+            ),
+          );
+        });
+  }
 
-              const SizedBox(
-                height: 30,
-              ),
-              GridView(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  mainAxisExtent: 150,
-                ),
-                children: [
-                  ClassTile(
-                    icon: Icons.book,
-                    title: "Jamb",
-                    ontap: ()=> context.push(const JambScreen()),
-                  ),
-                  ClassTile(
-                    icon: Icons.file_present,
-                    title: "Post-Utme",
-                    ontap: ()=> context.push(const PostUtmeScreen()),
-                  ),
+  Widget displayContent(BrainfriendController controller){
+    final data = controller.response.data as ContentResponse?;
+    if (data == null) {
+      return Container(); //error widget
+    }
+    final categories = data.getCategories();
+    return ListView.builder(
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(categories[index]),
 
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+          );
+        });
   }
 }

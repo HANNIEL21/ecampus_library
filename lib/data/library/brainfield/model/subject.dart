@@ -9,29 +9,27 @@ class Content {
   Content({required this.classs, required this.code, required this.examtype, required this.subject});
 
   factory Content.fromJson(Map<String, dynamic> json) {
-  return Content(
-    classs: json['class'],
-  code: json['code'],
-  examtype: json['examtype'],
-  subject: json['subject'],
-  );
+    return Content(
+      classs: json['class'],
+      code: json['code'],
+      examtype: json['examtype'],
+      subject: json['subject'],
+    );
   }
 
   Map<String, dynamic> toJson() {
-  final Map<String, dynamic> data = new Map<String, dynamic>();
-  data['class'] = this.classs;
-  data['code'] = this.code;
-  data['examtype'] = this.examtype;
-  data['subject'] = this.subject;
-  return data;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['class'] = this.classs;
+    data['code'] = this.code;
+    data['examtype'] = this.examtype;
+    data['subject'] = this.subject;
+    return data;
   }
 }
 
-class SubjectResponse with BaseHelper{
-
+class ContentResponse with BaseHelper{
   final List<Content> contents;
-
-  const SubjectResponse({required this.contents});
+  const ContentResponse({required this.contents});
 
 
   List<String> getCategories(){
