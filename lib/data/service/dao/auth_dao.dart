@@ -2,7 +2,7 @@ import 'package:ecampus_library/export.dart';
 
 
 abstract class AuthDao {
-  Future createAccount({required String email, required String password});
+  Future <CreateAccountUserResult>createAccount({required String email, required String password});
 
   Future<FirebaseUserModel?> login({required String email, required String password});
 

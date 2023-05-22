@@ -13,8 +13,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController = TextEditingController(text:"testadmin1@gmail.com");
-  TextEditingController passwordController = TextEditingController(text:"testAdmin1");
+  TextEditingController emailController = TextEditingController(text:"teststudent1@gmail.com");
+  TextEditingController passwordController = TextEditingController(text:"teststudent1");
 
   String? loginError;
   bool isLoading = false;
@@ -24,6 +24,12 @@ class _LoginScreenState extends State<LoginScreen> {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
   }
 
   login(AuthProvider provider) async {
@@ -65,7 +71,6 @@ class _LoginScreenState extends State<LoginScreen> {
               context.push(const AppRoot());
               return;
             }
-
             context.push(const AppRoot());
           }
         });

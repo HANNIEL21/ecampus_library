@@ -34,13 +34,15 @@ class AuthProvider extends BaseProvider {
 
       await Preference.saveCategory(user.category);
 
+      notifyListeners();
       callback(_response);
     } catch (e) {
       _response = ProviderResponse(error: e.toString());
 
+      print(e.toString());
+      notifyListeners();
       callback(_response);
     }
-    notifyListeners();
   }
 
   void createAccount(
@@ -51,16 +53,19 @@ class AuthProvider extends BaseProvider {
     _response = const ProviderResponse(isLoading: true);
     notifyListeners();
 
-    try{
-      final user = await repository.createAccount(email: email, password: password);
-      final _response = ProviderResponse(data: user);
+    try {
+      final user =
+          await repository.createAccount(email: email, password: password);
 
+      _response = ProviderResponse(data: user);
 
-
+      notifyListeners();
       callback(_response);
-    }catch(e){
-      final _response = ProviderResponse(error: e.toString());
+    } catch (e) {
+      _response = ProviderResponse(error: e.toString());
       callback(_response);
+
+      notifyListeners();
     }
   }
 

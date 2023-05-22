@@ -5,26 +5,16 @@ class AuthRepository with AuthDao {
   final collections = FirebaseFirestore.instance.collection("users");
 
   @override
-  Future<UserCredential?> createAccount(
+  Future<CreateAccountUserResult> createAccount(
       {required String email, required String password}) async {
-    try {
-      UserCredential? userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: email.trim(), password: password.trim())
-          .then((value) async {
-        //TODO complete registration process and insert user
-        final user = value.user;
-        if (user == null) {
-          return;
-        }
-      }).catchError((error) {
-        throw Exception(error.toString());
-      });
+    final userCredential = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(
+            email: email.trim(), password: password.trim())
+        .catchError((e) {
+      throw Exception(e.toString());
+    });
 
-      return userCredential;
-    } catch (e) {
-      rethrow;
-    }
+    return CreateAccountUserResult(credential: userCredential);
   }
 
   @override
@@ -56,7 +46,6 @@ class AuthRepository with AuthDao {
       log("repository:$data");
 
       return FirebaseUserModel.fromJson(data);
-
     } catch (e) {
       rethrow;
     }
